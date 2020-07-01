@@ -452,6 +452,23 @@ class MyBase {
     }
 
     /**
+     * 根据NAME获取多选框的值
+     * @param {string} name 多选框对象的name属性
+     * @returns {Array} 被选中的checkbox的值数组
+     */
+    getCheckboxValuesByName(name) {
+        let values = [];
+        const $checked = $('input[name="' + name + '"]:checkbox:checked');
+        if ($checked != null && !this.checkArrNull($checked)) {
+            for (let index = 0; index < $checked.length; index++) {
+                const dom = $checked[index];
+                values.push($(dom).val());
+            }
+        }
+        return values;
+    }
+
+    /**
      * 在字符串中间插入字符
      * @param {string} soure 原始字符串
      * @param {number} start 插入点
